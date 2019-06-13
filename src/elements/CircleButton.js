@@ -1,11 +1,21 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-class CircleButton extends React.Component {
+class circleButton extends React.Component {
   render() {
+    const { style, color } = this.props;
+
+    let bgColor = '#E31676';
+    let textColor = '#FFF';
+
+    if (color === 'white') {
+      bgColor = '#FFF';
+      textColor = '#E31676';
+    }
+
     return (
-      <View style={styles.CircleButton}>
-        <Text style={styles.CircleButtonTitle}>
+      <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
+        <Text style={[styles.circleButtonTitle, { color: textColor }]}>
           {this.props.children}
         </Text>
       </View>
@@ -14,7 +24,7 @@ class CircleButton extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  CircleButton: {
+  circleButton: {
     position: 'absolute',
     bottom: 32,
     right: 32,
@@ -27,16 +37,14 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    backgroundColor: '#E31676',
     zIndex: 10,
   },
-  CircleButtonTitle: {
+  circleButtonTitle: {
     lineHeight: 28,
     fontSize: 28,
     marginLeft: 2,
     marginTop: 2,
-    color: '#FFF',
   },
 });
 
-export default CircleButton;
+export default circleButton;
